@@ -1,0 +1,27 @@
+{
+  "name": "starter-express-api",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyclic-software/starter-express-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cyclic-software/starter-express-api/issues"
+  },
+  "homepage": "https://github.com/cyclic-software/starter-express-api#readme",
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "@shuddho11288/blackboxai-api": "^1.2.0",
+    "axios": "^1.7.7",
+    "express": "^4.21.1",
+    "node-fetch": "^3.3.2"
+  }
+}
