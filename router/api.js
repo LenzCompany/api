@@ -1,9 +1,21 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import yts from "yt-search"
 import fetch from 'node-fetch'
 import axios from 'axios'
 import { blackbox } from '@shuddho11288/blackboxai-api'
 import express from "express"
 const router = express.Router()
+
+//search
+router.get('/yt-search', async (req, res) => {
+    const query = req.query.query
+    if (!query) return res.json({"error" : "tidak di temukan query"})
+        const result = await yts(query)
+        res.json({
+            status: "200",
+            result: result
+        })
+    })
 
 //NEWS
 router.get('/news-cnn', async (req, res) => {
