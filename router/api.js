@@ -1,10 +1,26 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+
 import yts from "yt-search"
 import fetch from 'node-fetch'
 import axios from 'axios'
-import { blackbox } from '@shuddho11288/blackboxai-api'
 import express from "express"
+import chokidar from 'chokidar';
+import { fileURLToPath } from 'url';
+import path from 'path';
 const router = express.Router()
+
+//FUNC
+async function fetchWithModel(content, model) {
+    try {
+      const response = await axios.post('https://luminai.my.id/', {
+        content: content,
+        model: model
+      })
+
+      return response.data.result
+    } catch (error) {
+      return error
+    }
+  }
 
 //search
 router.get('/yt-search', async (req, res) => {
@@ -55,15 +71,6 @@ router.get('/news-kumparan', async (req, res) => {
     })
 })
 //AI
-router.get('/blackbox', async (req, res) => {
-    const query = req.query.query
-    if (!query) return res.json({"error" : "tidak di temukan query"})
-        const result = await blackbox(query)
-        res.json({
-            status: "200",
-            result
-        })
-})
 router.get('/lumin-ai', async (req, res) => {
     const query = req.query.query
     if (!query) return res.json({"error" : "tidak di temukan query"})
@@ -86,23 +93,31 @@ router.get('/lumin-ai', async (req, res) => {
 router.get("/openai", async (req, res) => {
     const query = req.query.query
     if (!query) return res.json({"error" : "tidak di temukan query"})
-        const req_url = await fetch(`https://btch.us.kg/openai?text=${query}`)
-    const final = await req_url.json()
-    const masukkann = final.result
+        const model = 'gpt-4o'
+    const reqs = await fetchWithModel(query, model)
     res.json({
         status: "200",
-        result: masukkann
+        result: reqs
+    })
+})
+router.get("/claude", async (req, res) => {
+    const query = req.query.query
+    if (!query) return res.json({"error":"tidak di temukan query"})
+        const model = 'claude-sonnet-3.5'
+    const reqs = await fetchWithModel(query, model)
+    res.json({
+        status: "200",
+        result: reqs
     })
 })
 router.get("/gemini", async (req, res) => {
     const query = req.query.query
     if (!query) return res.json({"error" : "tidak di temukan query"})
-        const req_url = await fetch(`https://btch.us.kg/gemini?text=${query}`)
-    const final = await req_url.json()
-    const masukkann = final.result
+        const model = 'gemini-pro'
+    const reqs = await fetchWithModel(query, model)
     res.json({
         status: "200",
-        result: masukkann
+        result: reqs
     })
 })
 router.get("/tiktok", async (req, res) => {
@@ -126,4 +141,10 @@ router.get("/covid-19", async (req, res, next) => {
         result
     })
 })
+
+chokidar.watch(__dirname).on('change', (path) => {
+  console.log(`File ${path} modificato. Riavvio...`);
+  process.exit(0); // Riavvia automaticamente
+});
+
 export default router
