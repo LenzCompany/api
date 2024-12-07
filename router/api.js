@@ -3,9 +3,6 @@ import yts from "yt-search"
 import fetch from 'node-fetch'
 import axios from 'axios'
 import express from "express"
-import chokidar from 'chokidar';
-import { fileURLToPath } from 'url';
-import path from 'path';
 const router = express.Router()
 
 //FUNC
@@ -141,10 +138,5 @@ router.get("/covid-19", async (req, res, next) => {
         result
     })
 })
-
-chokidar.watch(__dirname).on('change', (path) => {
-  console.log(`File ${path} modificato. Riavvio...`);
-  process.exit(0); // Riavvia automaticamente
-});
 
 export default router
