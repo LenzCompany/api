@@ -3,9 +3,19 @@ import yts from "yt-search"
 import fetch from 'node-fetch'
 import axios from 'axios'
 import express from "express"
+import { truncateSync } from "fs"
 const router = express.Router()
 
 //FUNC
+global.fetchJson = async(url) => {
+    try {
+     let res = await fetch(url)
+        let json = await res.json()
+        return json
+    } catch (error) {
+        console.log(error)
+    }
+}
 async function fetchWithModel(content, model) {
     try {
       const response = await axios.post('https://luminai.my.id/', {

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard API</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #35424a;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .api-list {
+            margin: 20px 0;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .api-item {
+            border-bottom: 1px solid #eaeaea;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .api-item:last-child {
+            border-bottom: none;
+        }
+        .api-name {
+            font-size: 1.2em;
+            color: #35424a;
+        }
+        .api-description {
+            color: #777;
+        }
+        .api-link {
+            text-decoration: none;
+            color: #ffffff;
+            background: #5cb85c;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .api-link:hover {
+            background: #4cae4c;
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: #35424a;
+            color: #ffffff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>Dashboard API</h1>
+    </div>
+</header>
+
+<div class="container">
+    <div class="api-list">
+        <div class="api-item">
+            <div>
+                <div class="api-name">YT - SEARCH</div>
+                <div class="api-description">/api/yt-search</div>
+            </div>
+            <a href="/api/yt-search" class="api-link">Lihat API</a>
+        </div>
+        <div class="api-item">
+            <div>
+                <div class="api-name">CNN API</div>
+                <div class="api-description">/api/news-cnn</div>
+            </div>
+            <a href="/api/news-cnn" class="api-link">Lihat API</a>
+        </div>
+        <div class="api-item">
+            <div>
+                <div class="api-name">CNBC API</div>
+                <div class="api-description">/api/news-cnbc</div>
+            </div>
+            <a href="/api/news-cnbc" class="api-link">Lihat API</a>
+        </div>
+        <div class="api-item">
+            <div>
+                <div class="api-name">REPLUBIKA API</div>
+                <div class="api-description">/api/news-replubika</div>
+            </div>
+            <a href="/api/news-replubika" class="api-link">Lihat API</a>
+        </div>
+        
+        <div class="api-item">
+            <div>
+                <div class="api-name">KUMPARAN API</div>
+                <div class="api-description">/api/news-kumparan</div>
+            </div>
+            <a href="/api/news-kumparan" class="api-link">Lihat API</a>
+        </div>
+
+        <div class="api-item">
+            <div>
+                <div class="api-name">LUMINAI API</div>
+                <div class="api-description">/api/lumin-ai</div>
+            </div>
+            <a href="/api/lumin-ai?query=hallo" class="api-link">Lihat API</a>
+        </div>
+
+        <div class="api-item">
+            <div>
+                <div class="api-name">Openai API</div>
+                <div class="api-description">/api/openai</div>
+            </div>
+            <a href="/api/openai?query=hallo" class="api-link">Lihat API</a>
+        </div>
+
+        <div class="api-item">
+            <div>
+                <div class="api-name">Claude API</div>
+                <div class="api-description">/api/claude</div>
+            </div>
+            <a href="/api/claude?query=hallo" class="api-link">Lihat API</a>
+        </div>
+
+        <div class="api-item">
+            <div>
+                <div class="api-name">Gemini API</div>
+                <div class="api-description">/api/gemini</div>
+            </div>
+            <a href="/api/gemini?query=hallo" class="api-link">Lihat API</a>
+        </div>
+
+        <div class="api-item">
+            <div>
+                <div class="api-name">Tiktok API</div>
+                <div class="api-description">/api/tiktok</div>
+            </div>
+            <a href="/api/tiktok" class="api-link">Lihat API</a>
+        </div>
+
+        <div class="api-item">
+            <div>
+                <div class="api-name">Covid-19 API</div>
+                <div class="api-description">/api/covid-19</div>
+            </div>
+            <a href="/api/covid-19" class="api-link">Lihat API</a>
+        </div>
+        
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Lenzy API. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
