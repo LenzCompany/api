@@ -16,6 +16,28 @@ global.fetchJson = async(url) => {
         console.log(error)
     }
 }
+
+async function pingSystem(url, timeout = 5000) {
+  try {
+    const startTime = Date.now();
+    const response = await fetch(url, { timeout });
+    const endTime = Date.now();
+
+    const status = response.status;
+    const responseTime = endTime - startTime;
+
+    return {
+      success: response.ok,
+      status: status,
+      responseTime: responseTime + "ms"
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: error.message
+    };
+  }
+}
 async function fetchWithModel(content, model) {
     try {
       const response = await axios.post('https://luminai.my.id/', {
@@ -28,19 +50,71 @@ async function fetchWithModel(content, model) {
       return error
     }
   }
-
+router.get("/renungan", async (req, res) => {
+    const fruits = await fetchJson(`https://github.com/BochilTeam/database/raw/refs/heads/master/kata-kata/renungan.json`)
+    const randomFruit = fruits[Math.floor(Math.random() * fruits.length)];
+    res.json({
+        status: 200,
+        result: randomFruit
+    })
+})
+router.get("/truth", async (req, res) => {
+    const fruits = await fetchJson(`https://github.com/BochilTeam/database/raw/refs/heads/master/kata-kata/truth.json`)
+    const randomFruit = fruits[Math.floor(Math.random() * fruits.length)];
+    res.json({
+        status: 200,
+        result: randomFruit
+    })
+})
+router.get("/dare", async (req, res) => {
+    const fruits = await fetchJson(`https://github.com/BochilTeam/database/raw/refs/heads/master/kata-kata/dare.json`)
+    const randomFruit = fruits[Math.floor(Math.random() * fruits.length)];
+    res.json({
+        status: 200,
+        result: randomFruit
+    })
+})
+router.get("/bucin", async (req, res) => {
+    const fruits = await fetchJson(`https://github.com/BochilTeam/database/raw/refs/heads/master/kata-kata/bucin.json`)
+    const randomFruit = fruits[Math.floor(Math.random() * fruits.length)];
+    res.json({
+        status: 200,
+        result: randomFruit
+    })
+})
+router.get("/asmaulhusna", async(req, res) => {
+    let ress = await fetchJson(`https://github.com/BochilTeam/database/raw/refs/heads/master/religi/asmaulhusna.json`)
+    res.json({
+        status: 200,
+        result: ress 
+    })
+})
+//kurs
+router.get("/kurs", async(req, res) => {
+    const ress = await fetchJson(`https://raw.githubusercontent.com/BochilTeam/database/refs/heads/master/ekonomi/kurs.json`)
+    res.json({
+        status: 200,
+        result: ress
+    })
+})
 //search
 router.get('/yt-search', async (req, res) => {
     const query = req.query.query
     if (!query) return res.json({"error" : "tidak di temukan query"})
         const result = await yts(query)
         res.json({
-            status: "200",
-            result: result
+            result
         })
     })
 
 //NEWS
+router.get('/ping', async (req, res) => {
+    const result = await pingSystem('https://api.ndaadev.us.kg')
+    res.json({
+        status: 200,
+        result: result 
+    })
+})
 router.get('/news-cnn', async (req, res) => {
     const ll = await fetch(`https://news-api-zhirrr.vercel.app/v1/cnn-news`)
     const ress = await ll.json()
