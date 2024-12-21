@@ -201,6 +201,32 @@ router.get("/gemini", async (req, res) => {
         result: reqs
     })
 })
+router.get("/ytv", async (req, res) => {
+    const url = req.query.url
+    if (!url) return res.json({"error":"tidak di temukan url"})
+    const resz = await fetchJson(`https://api.siputzx.my.id/api/d/ytmp4?url=${url}`)
+    const { dl, title } = resz.data
+    res.json({
+        status: 200,
+        result: {
+            title: title,
+            dl: dl,
+        }
+    })
+})
+router.get("/yta", async (req, res) => {
+    const url = req.query.url
+    if (!url) return res.json({"error":"tidak di temukan url"})
+    const resz = await fetchJson(`https://api.siputzx.my.id/api/d/ytmp3?url=${url}`)
+    const { dl, title } = resz.data
+    res.json({
+        status: 200,
+        result: {
+            title: title,
+            dl: dl,
+        }
+    })
+})
 router.get("/tiktok", async (req, res) => {
     const url = req.query.url
     if (!url) return res.json({"error": "masukkan url!"})
