@@ -5,7 +5,7 @@ import axios from 'axios'
 import express from "express"
 import { truncateSync } from "fs"
 const router = express.Router()
-
+import ai from '../lib/ai.js'
 //FUNC
 global.fetchJson = async(url) => {
     try {
@@ -171,11 +171,51 @@ router.get('/lumin-ai', async (req, res) => {
             result
         })
 })
+router.get("/openai-v2", async (req, res) => {
+    const query = req.query.query
+    if (!query) return res.json({"error":"tidak di temukan query"})
+        const model = 'openai'
+    const reqs = await ai(query, model)
+    res.json({
+        status: "200",
+        result: reqs
+    })
+})
 router.get("/openai", async (req, res) => {
     const query = req.query.query
     if (!query) return res.json({"error" : "tidak di temukan query"})
         const model = 'gpt-4o'
     const reqs = await fetchWithModel(query, model)
+    res.json({
+        status: "200",
+        result: reqs
+    })
+})
+router.get("/mistral-large", async (req, res) => {
+    const query = req.query.query
+    if (!query) return res.json({"error":"tidak di temukan query"})
+        const model = 'mistral-large'
+    const reqs = await ai(query, model)
+    res.json({
+        status: "200",
+        result: reqs
+    })
+})
+router.get("/mistral", async (req, res) => {
+    const query = req.query.query
+    if (!query) return res.json({"error":"tidak di temukan query"})
+        const model = 'mistral'
+    const reqs = await ai(query, model)
+    res.json({
+        status: "200",
+        result: reqs
+    })
+})
+router.get("/llama", async (req, res) => {
+    const query = req.query.query
+    if (!query) return res.json({"error":"tidak di temukan query"})
+        const model = 'llama'
+    const reqs = await ai(query, model)
     res.json({
         status: "200",
         result: reqs
